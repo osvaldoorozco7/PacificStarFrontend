@@ -1,49 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import "./Form.css";
+import { getUnidades } from "../../services/unidadService";
 
 const Form = () => {
+    
+    const [unidades, setUnidades] = useState([]);
+    const revisiones = ["Primera", "Segunda", "Tercera"];
+    const [formData, setFormData] = useState({
+        unidad: "",
+        fecha: "",
+        observaciones: ""
+    });
+
+    useEffect(() => {
+        const cargarUnidades = async () => {
+            try {
+                const data = await getUnidades();
+                setUnidades(data);
+            } catch (error) {
+                console.error("Error al obtener las unidades", error);
+            }
+        };
+        cargarUnidades();
+        }, []);
+
     return(
+        <form className="main-container">
+            <h2>Inspección</h2>
 
-        <div className="main-container">
-            <h1>Bitacora de mantenimiento preventivo</h1>
-
+            <h3>Datos</h3>
             <div className="formDate">
+                <label htmlFor="">Unidad: </label>
+                <select id="unidades" name="unidades">
+                    {unidades.map((unidades) => (
+                        <option key={unidad} value={unidad}>
+                            {unidad}
+                        </option>
+                    ))}
+                </select>
+
                 <label htmlFor="">Fecha </label>
                 <input type="datetime-local" name="" id="" />
             </div>
 
-            <div>
-                <label htmlFor="unidades">Unidad </label>
-                <select name="unidades" id="unidades">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </div>
-
-            <h2>Revisiones</h2>
+            <h3>Temperaturas</h3>
             <div className="revisiones">
-                <label htmlFor="revision">Primer revisión </label>
-                <input type="time" name="primerRevision" id="" />
-                <label htmlFor="primerTemp">Temperatura </label>
-                <input type="text" name="" id="" />°C
-                <br />
-                <label htmlFor="revision">Segunda revisión </label>
-                <input type="time" name="SegundaRevision" id="" />
-                <label htmlFor="segundaTemp">Temperatura </label>
-                <input type="text" name="" id="" />°C
-                <br />
-                <label htmlFor="revision">Tercer revisión </label>
-                <input type="time" name="tercerRevision" id="" />
-                <label htmlFor="primerTemp">Temperatura </label>
-                <input type="text" name="" id="" />°C
+                {revisiones.map((revision, index) => (
+                    <div key={index} className="revision">
+                        <label>{revision} revision</label>
+                        <input type="time" className="timeInput"/>
+                        <br />
+                        <label>Temperatura</label>
+                        <input type="number" className="tempInput"/> °C
+                    </div>
+                ))}
             </div>
 
-            <h2>Observaciones</h2>
-            <input type="text" name="observaciones" id="observaciones" />
+            <h3>Observaciones</h3>
+            <input type="text" name="observaciones" id="observaciones" className="obsInput"/>
+            <br />
+            <button type="submit">Guardar</button>
 
-        </div>
+        </form>
     )
 }
 
