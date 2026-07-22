@@ -16,13 +16,17 @@ const Form = () => {
         const cargarUnidades = async () => {
             try {
                 const data = await getUnidades();
+
+                console.log(data);
+
                 setUnidades(data);
             } catch (error) {
-                console.error("Error al obtener las unidades", error);
+                console.error(error);
             }
         };
+
         cargarUnidades();
-        }, []);
+    }, []);
 
     return(
         <form className="main-container">
@@ -31,12 +35,27 @@ const Form = () => {
             <h3>Datos</h3>
             <div className="formDate">
                 <label htmlFor="">Unidad: </label>
-                <select id="unidades" name="unidades">
-                    {unidades.map((unidades) => (
-                        <option key={unidad} value={unidad}>
-                            {unidad}
-                        </option>
-                    ))}
+                <select
+                    id="unidades"
+                    name="unidad"
+                    value={formData.unidad}
+                    onChange={(e) =>
+                        setFormData({
+                            ...formData,
+                            unidad: e.target.value,
+                        })
+                        }
+                >
+                <option value="">Seleccione una unidad</option>
+
+                {unidades.map((unidad) => (
+                    <option
+                        key={unidad.numeroUnidad}
+                        value={unidad.numeroUnidad}
+                    >
+                        {unidad.numeroUnidad}
+                    </option>
+                ))}
                 </select>
 
                 <label htmlFor="">Fecha </label>
