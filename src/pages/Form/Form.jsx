@@ -30,7 +30,10 @@ const Form = () => {
 
     return(
         <form className="main-container">
-            <h2>Inspección</h2>
+            
+            <h2>
+                Inspección
+            </h2>
 
             <h3>Datos</h3>
             <div className="formDate">

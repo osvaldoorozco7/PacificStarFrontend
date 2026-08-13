@@ -3,16 +3,25 @@
     justify-content: stretch;
     font-size: large;
 }
+
 .main-container > h2{
     background-color: #286192;
     color: white;
     padding: 1rem 1rem;
 }
 
+.main-container > h2 > img {
+    height: 1.5rem ;
+}
+
 .main-container > h3{
     background-color: #2892D7;
     color: white;
     padding: 0.7rem 0.7rem;
+}
+
+.formDate {
+    margin: 0.5rem;
 }
 
 .timeInput {
