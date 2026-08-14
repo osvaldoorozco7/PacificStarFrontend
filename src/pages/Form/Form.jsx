@@ -31,9 +31,12 @@ const Form = () => {
     return(
         <form className="main-container">
             
-            <h2>
-                Inspección
-            </h2>
+            <div className="title-container">
+                <h2>
+                    Crear bitácora
+                </h2>
+            </div>
+
 
             <h3>Datos</h3>
             <div className="formDate">

@@ -4,14 +4,13 @@
     font-size: large;
 }
 
-.main-container > h2{
-    background-color: #286192;
-    color: white;
-    padding: 1rem 1rem;
-}
-
 .main-container > h2 > img {
     height: 1.5rem ;
+}
+
+.title-container {
+    justify-items: center;
+    margin: 0.5rem 0;
 }
 
 .main-container > h3{

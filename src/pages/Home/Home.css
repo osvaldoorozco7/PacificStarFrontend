@@ -1,0 +1,35 @@
+.home-main-container {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.botones-container > button:hover{
+    scale: 1.5;
+    transition: 0.4s ease;
+}
+
+@media screen and (max-width:768px) {
+
+    .botones-container {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+    }
+
+    .botones-container > button {
+        height: 4rem;
+        align-items: center;
+        width: 80%;
+        font-size: 1.5rem;
+        background-color: #2892D7;
+        color: white;
+        border-radius: 0.8rem;
+    }
+}

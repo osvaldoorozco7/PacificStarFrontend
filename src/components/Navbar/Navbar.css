@@ -1,0 +1,118 @@
+/* Barra superior */
+
+.navbar {
+    height: 60px;
+    background: #003366;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366;
+    padding: 0 25px;
+}
+
+.logo {
+    color: white;
+}
+
+.desktop-menu {
+    display: flex;
+    gap: 25px;
+
+    list-style: none;
+}
+
+.desktop-menu a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Botón hamburguesa */
+
+.hamburger {
+    display: none;
+
+    background: none;
+    border: none;
+
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Sidebar */
+
+.sidebar {
+    position: fixed;
+
+    top: 0;
+    left: -260px;
+
+    width: 250px;
+    height: 100vh;
+
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 30px 20px;
+
+    transition: left .3s ease;
+
+    z-index: 1001;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar a {
+    margin: 20px 0;
+    text-decoration: none;
+    color: #222;
+    font-size: 18px;
+}
+
+.close {
+    align-self: flex-end;
+
+    border: none;
+    background: none;
+
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* Fondo oscuro */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: .3s;
+
+    z-index: 1000;
+}
+
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width:768px) {
+
+    .hamburger {
+        display: block;
+    }
+
+    .desktop-menu {
+        display: none;
+    }
+}
