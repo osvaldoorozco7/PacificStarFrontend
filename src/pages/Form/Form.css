@@ -1,3 +1,52 @@
 .main-container {
-    background-color: black;
+    display:grid;
+    justify-content: stretch;
+    font-size: large;
+}
+
+.main-container > h2 > img {
+    height: 1.5rem ;
+}
+
+.title-container {
+    justify-items: center;
+    margin: 0.5rem 0;
+}
+
+.main-container > h3{
+    background-color: #2892D7;
+    color: white;
+    padding: 0.7rem 0.7rem;
+}
+
+.formDate {
+    margin: 0.5rem;
+}
+
+.timeInput {
+    margin-top: 0.7rem;
+    margin-left: 1rem;
+}
+.tempInput {
+    width: 2.5rem;
+    margin-top: 0.2rem;
+    margin-left: 2rem;
+}
+
+.obsInput {
+    margin-top: 1rem;
+    height: fit-content;
+    min-height: 2.5rem;
+    justify-self: center;
+    width: 90%;
+    font-size:larger;
+}
+
+.main-container > button {
+    background-color: #2892D7;
+    font-size: large;
+    color: white;
+    width: 90%;
+    height: 2.5rem;
+    justify-self: center;
 }
