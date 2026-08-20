@@ -23,6 +23,10 @@
     margin: 0.5rem;
 }
 
+.datos_iniciales > input {
+    width: 3rem;
+}
+
 .timeInput {
     margin-top: 0.7rem;
     margin-left: 1rem;
