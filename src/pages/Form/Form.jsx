@@ -1,10 +1,21 @@
 import { useEffect, useState } from "react";
 import "./Form.css";
 import { getUnidades } from "../../services/unidadService";
+import { saveBitacora } from "../../services/bitacoraService";
 
 const Form = () => {
     const [unidades, setUnidades] = useState([]);
-    const combustible = ["Empty","1/8", "1/4", "3/8", "1/2", "5/8", "3/4", "7/8", "Full" ];
+    const combustible = [
+    { label: "Empty", value: 0 },
+    { label: "1/8", value: 0.125 },
+    { label: "1/4", value: 0.25 },
+    { label: "3/8", value: 0.375 },
+    { label: "1/2", value: 0.5 },
+    { label: "5/8", value: 0.625 },
+    { label: "3/4", value: 0.75 },
+    { label: "7/8", value: 0.875 },
+    { label: "Full", value: 1 }
+    ];
     const estado = ["Bueno", "Malo"];
 
     const [formData, setFormData] = useState(() => {
@@ -13,13 +24,13 @@ const Form = () => {
         const localTime = new Date(ahora.getTime() - offset * 60000);
 
         return {
-            unidad: "",
-            fecha: localTime.toISOString().slice(0, 16),
-            nivelCombustible: "",
-            tempInicial: "",
-            setPoint: "",
-            nivelAnticongelante: ""
-        };
+                unidad: "",
+                fecha: "",
+                horaEncendido: "",
+                nivelCombustible: "",
+                tempInicial: "",
+                tempFinal: ""
+             };
     });
 
     // Obtener las unidades desde el backend
@@ -48,10 +59,32 @@ const Form = () => {
     };
 
     // Enviar formulario
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log("Datos del formulario:", formData);
+        const request = {
+            numeroUnidad: Number(formData.unidad),
+
+            fecha: `${formData.fecha}T00:00:00`,
+
+            horaEncendido: `${formData.fecha}T${formData.horaEncendido}:00`,
+
+            nivelCombustible: Number(formData.nivelCombustible),
+
+            tempInicial: Number(formData.tempInicial),
+
+            tempFinal: Number(formData.tempFinal)
+        };
+
+        console.log("Enviando:", request);
+
+        try {
+            const response = await saveBitacora(request);
+
+            console.log("Respuesta:", response);
+        } catch (error) {
+            console.error("Error al guardar:", error);
+        }
     };
 
     return (
@@ -102,14 +135,27 @@ const Form = () => {
                 <br />
 
                 <label htmlFor="fecha">
-                    Fecha:
+                    Fecha
                 </label>
 
                 <input
-                    type="datetime-local"
+                    type="date"
                     id="fecha"
                     name="fecha"
                     value={formData.fecha}
+                    onChange={handleChange}
+                    required
+                />
+
+                <label htmlFor="horaEncendido">
+                    Hora de encendido
+                </label>
+
+                <input
+                    type="time"
+                    id="horaEncendido"
+                    name="horaEncendido"
+                    value={formData.horaEncendido}
                     onChange={handleChange}
                     required
                 />
@@ -146,6 +192,10 @@ const Form = () => {
 
                 <input
                     type="number"
+                    inputMode="decimal"
+                    min="-30"
+                    max="50"
+                    step="0.1"
                     id="setPoint"
                     name="setPoint"
                     value={formData.setPoint}
@@ -185,10 +235,6 @@ const Form = () => {
                 <br />
                 */}
 
-                <label htmlFor="nivelCombustible">
-                    Combustible
-                </label>
-
                 <select
                     id="nivelCombustible"
                     name="nivelCombustible"
@@ -197,15 +243,15 @@ const Form = () => {
                     required
                 >
                     <option value="">
-                        Nivel 
+                        Nivel
                     </option>
 
                     {combustible.map((nivel) => (
                         <option
-                            key={nivel}
-                            value={nivel}
+                            key={nivel.value}
+                            value={nivel.value}
                         >
-                            {nivel}
+                            {nivel.label}
                         </option>
                     ))}
                 </select>
