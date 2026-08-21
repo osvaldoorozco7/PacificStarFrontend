@@ -1,6 +1,6 @@
-import api from "./api.js";
+import api from "./api";
 
-export const postBitacora = async () => {
-    const response = await api.post("/bitacora")
+export const saveBitacora = async (data) => {
+    const response = await api.post("/Bitacora/saveBitacora", data);
     return response.data;
 };
