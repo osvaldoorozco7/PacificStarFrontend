@@ -67,8 +67,8 @@ const Bitacoras = () => {
                             <td>{formatearFecha(bitacora.fecha)}</td>
                             <td>{formatearHora(bitacora.horaEncendido)}</td>
                             <td>{bitacora.nivelCombustible}</td>
-                            <td>{bitacora.tempInicial}</td>
-                            <td>{bitacora.tempFinal}</td>
+                            <td>{bitacora.tempInicial} °C</td>
+                            <td>{bitacora.tempFinal} °C</td>
                         </tr>
                      ))}
                 </tbody>
