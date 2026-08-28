@@ -17,7 +17,7 @@ function Home() {
 
                 <br />
 
-                <button onClick={() => navigate("/bitacora")}>
+                <button onClick={() => navigate("/bitacoras")}>
                     Ver bitácoras
                 </button>
             </div>

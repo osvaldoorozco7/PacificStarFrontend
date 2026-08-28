@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import "./Form.css";
 import { getUnidades } from "../../services/unidadService";
 import { saveBitacora } from "../../services/bitacoraService";
+import { useNavigate } from "react-router-dom";
 
 const Form = () => {
+    const navigate = useNavigate();
     const [unidades, setUnidades] = useState([]);
     const combustible = [
     { label: "Empty", value: 0 },
@@ -25,6 +27,7 @@ const Form = () => {
 
         return {
                 unidad: "",
+                horasMotor: "",
                 fecha: "",
                 horaEncendido: "",
                 nivelCombustible: "",
@@ -65,6 +68,8 @@ const Form = () => {
         const request = {
             numeroUnidad: Number(formData.unidad),
 
+            horasMotor: Number(formData.horasMotor),
+
             fecha: `${formData.fecha}T00:00:00`,
 
             horaEncendido: `${formData.fecha}T${formData.horaEncendido}:00`,
@@ -80,8 +85,7 @@ const Form = () => {
 
         try {
             const response = await saveBitacora(request);
-
-            console.log("Respuesta:", response);
+            navigate("/");
         } catch (error) {
             console.error("Error al guardar:", error);
         }
@@ -131,6 +135,18 @@ const Form = () => {
                         </option>
                     ))}
                 </select>
+                <br />
+                <label htmlFor="horasMotor">
+                    Horas del motor
+                </label>
+
+                <input 
+                type="number" 
+                id="horasMotor"
+                name="horasMotor"
+                value={formData.horasMotor}
+                onChange={handleChange}
+                required/>
 
                 <br />
 
@@ -191,7 +207,7 @@ const Form = () => {
                 </label>
 
                 <input
-                    type="number"
+                    type="text"
                     inputMode="decimal"
                     min="-30"
                     max="50"
