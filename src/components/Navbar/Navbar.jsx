@@ -36,6 +36,10 @@ function Navbar() {
         <Link to="/nueva-bitacora" onClick={cerrarMenu}>
           Nueva Bitácora
         </Link>
+
+        <Link to="/bitacoras" onClick={cerrarMenu}>
+          Bitacoras
+        </Link>
       </aside>
     </>
   );
