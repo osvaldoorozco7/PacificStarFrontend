@@ -1,21 +1,387 @@
+/* ========================= */
+/* CONTENEDOR */
+/* ========================= */
+
 .bitacoras-container {
     width: 95%;
-    margin: 30px auto;
+    max-width: 1200px;
+
+    margin: 1.5rem auto;
+
+    box-sizing: border-box;
+}
+
+
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
+.bitacoras-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 1.5rem;
+}
+
+.bitacoras-header h1 {
+    margin: 0;
+
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.bitacoras-count {
+    color: #666;
+
+    font-size: 0.95rem;
+}
+
+
+/* ========================= */
+/* TABLA */
+/* ========================= */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    background-color: white;
 }
 
 table {
     width: 100%;
+
     border-collapse: collapse;
+
+    background-color: white;
 }
 
-th,
-td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
+
+/* ========================= */
+/* ENCABEZADOS */
+/* ========================= */
 
 th {
-    background-color: #003366;
+    padding: 0.8rem 0.7rem;
+
+    background-color: #2892D7;
     color: white;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ========================= */
+/* CELDAS */
+/* ========================= */
+
+td {
+    padding: 0.75rem;
+
+    border-top: 1px solid #e5e5e5;
+
+    font-size: 0.95rem;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+/* ========================= */
+/* FILAS */
+/* ========================= */
+
+tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+tbody tr:hover {
+    background-color: #f3f9fd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+tbody tr:nth-child(even):hover {
+    background-color: #f3f9fd;
+}
+
+
+/* ========================= */
+/* MENSAJES */
+/* ========================= */
+
+.status-message {
+    width: 100%;
+
+    padding: 2rem 1rem;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    color: #666;
+
+    background-color: #fafafa;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.status-message.error {
+    color: #b42318;
+
+    background-color: #fff5f5;
+
+    border-color: #f0b8b8;
+}
+
+
+/* ========================= */
+/* MOBILE LIST */
+/* ========================= */
+
+.mobile-list {
+    display: none;
+}
+
+
+/* ========================= */
+/* BITÁCORA CARD */
+/* ========================= */
+
+.bitacora-card {
+    margin-bottom: 0.8rem;
+
+    overflow: hidden;
+
+    background-color: white;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ========================= */
+/* RESUMEN */
+/* ========================= */
+
+.bitacora-summary {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 1rem;
+
+    border: none;
+
+    background: transparent;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-family: inherit;
+}
+
+.summary-main {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.3rem;
+}
+
+.unidad {
+    color: #222;
+
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.fecha-hora {
+    color: #666;
+
+    font-size: 0.85rem;
+}
+
+.temperaturas {
+    color: #2892D7;
+
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+
+/* ========================= */
+/* FLECHA */
+/* ========================= */
+
+.arrow {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    color: #2892D7;
+
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+
+/* ========================= */
+/* DETALLES */
+/* ========================= */
+
+.bitacora-details {
+    padding: 0.5rem 1rem 1rem;
+
+    border-top: 1px solid #eee;
+
+    background-color: #fafafa;
+}
+
+.detail-row {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 0.7rem 0;
+
+    border-bottom: 1px solid #e8e8e8;
+
+    font-size: 0.9rem;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row span {
+    color: #666;
+}
+
+.detail-row strong {
+    color: #222;
+
+    text-align: right;
+}
+
+
+/* ========================= */
+/* MÓVIL */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .bitacoras-container {
+        width: 94%;
+
+        margin: 1rem auto;
+    }
+
+
+    /* Header */
+
+    .bitacoras-header {
+        margin-bottom: 1rem;
+    }
+
+    .bitacoras-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .bitacoras-count {
+        font-size: 0.8rem;
+    }
+
+
+    /* Ocultar tabla */
+
+    .desktop-table {
+        display: none;
+    }
+
+
+    /* Mostrar tarjetas */
+
+    .mobile-list {
+        display: block;
+    }
+
+
+    /* Card */
+
+    .bitacora-card {
+        margin-bottom: 0.7rem;
+
+        border-radius: 7px;
+    }
+
+
+    /* Resumen */
+
+    .bitacora-summary {
+        padding: 0.85rem;
+    }
+
+    .unidad {
+        font-size: 0.95rem;
+    }
+
+    .fecha-hora {
+        font-size: 0.78rem;
+    }
+
+    .temperaturas {
+        font-size: 0.82rem;
+    }
+
+
+    /* Flecha */
+
+    .arrow {
+        width: 25px;
+        height: 25px;
+
+        font-size: 1.5rem;
+    }
+
+
+    /* Detalles */
+
+    .bitacora-details {
+        padding: 0.3rem 0.85rem 0.7rem;
+    }
+
+    .detail-row {
+        padding: 0.6rem 0;
+
+        font-size: 0.82rem;
+    }
+
 }

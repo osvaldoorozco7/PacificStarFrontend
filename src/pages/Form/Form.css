@@ -1,56 +1,329 @@
+/* ========================= */
+/* CONTENEDOR PRINCIPAL */
+/* ========================= */
+
 .main-container {
-    display:grid;
-    justify-content: stretch;
-    font-size: large;
+    display: grid;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+    font-size: 1rem;
 }
 
-.main-container > h2 > img {
-    height: 1.5rem ;
-}
+
+/* ========================= */
+/* TÍTULO */
+/* ========================= */
 
 .title-container {
-    justify-items: center;
-    margin: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0 1.5rem;
 }
 
-.main-container > h3{
+.title-container h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* ========================= */
+/* TÍTULOS DE SECCIÓN */
+/* ========================= */
+
+.main-container > h3 {
+    margin: 1.5rem 0 1rem;
+    padding: 0.65rem 1rem;
     background-color: #2892D7;
     color: white;
-    padding: 0.7rem 0.7rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-radius: 6px;
 }
 
-.formDate {
-    margin: 0.5rem;
+/* ========================= */
+/* CAMPOS DEL FORMULARIO */
+/* ========================= */
+
+.formData {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 0 1rem;
 }
+
+/* Cada label + input */
+
+.form-field {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Labels */
+
+.form-field label,
+.datos_iniciales label {
+    width: 180px;
+    flex-shrink: 0;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+/* Inputs y selects */
+
+.form-field input,
+.form-field select,
+.datos_iniciales input,
+.datos_iniciales select {
+
+    height: 2.5rem;
+    padding: 0.4rem 0.6rem;
+    box-sizing: border-box;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 1rem;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+/* Inputs del formulario */
+
+.form-field input,
+.form-field select {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Focus */
+
+.form-field input:focus,
+.form-field select:focus,
+.datos_iniciales input:focus,
+.datos_iniciales select:focus,
+.obsInput:focus {
+
+    outline: none;
+    border-color: #2892D7;
+    box-shadow: 0 0 0 2px rgba(40, 146, 215, 0.15);
+}
+
+
+/* ========================= */
+/* NIVELES Y TEMPERATURAS */
+/* ========================= */
+
+.datos_iniciales {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 0 1rem;
+}
+
+
+.datos_iniciales > label {
+
+    display: inline-flex;
+    align-items: center;
+    width: 180px;
+}
+
+
+/* Inputs pequeños */
 
 .datos_iniciales > input {
-    width: 3rem;
+    width: 6rem;
 }
+
+/* ========================= */
+/* REVISIONES */
+/* ========================= */
 
 .timeInput {
-    margin-top: 0.7rem;
-    margin-left: 1rem;
+    height: 2.5rem;
+    margin: 0.3rem 0 0 1rem;
+    padding: 0.3rem;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    font-size: 1rem;
 }
+
+
 .tempInput {
-    width: 2.5rem;
-    margin-top: 0.2rem;
-    margin-left: 2rem;
+    width: 5rem;
+    height: 2.5rem;
+    margin: 0.3rem 0 0 1rem;
+    padding: 0.3rem;
+    box-sizing: border-box;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    font-size: 1rem;
 }
+
+
+/* ========================= */
+/* OBSERVACIONES */
+/* ========================= */
 
 .obsInput {
-    margin-top: 1rem;
-    height: fit-content;
-    min-height: 2.5rem;
-    justify-self: center;
-    width: 90%;
-    font-size:larger;
+    width: calc(100% - 2rem);
+    min-height: 6rem;
+    margin: 0 1rem;
+    padding: 0.7rem;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
+
+/* ========================= */
+/* BOTÓN */
+/* ========================= */
+
 .main-container > button {
-    background-color: #2892D7;
-    font-size: large;
-    color: white;
-    width: 90%;
-    height: 2.5rem;
+    width: calc(100% - 2rem);
+    min-height: 2.7rem;
+    margin: 1.5rem 1rem 0;
+    padding: 0.5rem 1rem;
     justify-self: center;
+    background-color: #2892D7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.1s;
+}
+
+
+.main-container > button:hover {
+    background-color: #1d7fbd;
+}
+
+
+.main-container > button:active {
+    transform: scale(0.98);
+}
+
+
+/* ========================= */
+/* MÓVIL */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .main-container {
+        width: 100%;
+        padding-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+
+
+    /* Título */
+
+    .title-container {
+        margin: 0.8rem 0 0rem;
+    }
+
+    .title-container h2 {
+        font-size: 1.6rem;
+    }
+
+
+    /* Títulos de sección */
+
+    .main-container > h3 {
+        margin: 1.2rem 0 0.8rem;
+        padding: 0.6rem 0.8rem;
+        font-size: 1.1rem;
+        border-radius: 4px;
+    }
+
+
+    /* Campos */
+
+    .formData,
+    .datos_iniciales {
+        padding: 0 0.8rem;
+        gap: 0.75rem;
+    }
+
+
+    /* Label + input en la misma línea */
+
+    .form-field {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+
+    /* Labels */
+
+    .form-field label,
+    .datos_iniciales label {
+        width: 50%;
+        font-size: 1.1rem;
+    }
+
+
+    /* Inputs */
+
+    .form-field input,
+    .form-field select,
+    .datos_iniciales input,
+    .datos_iniciales select {
+        height: 2.3rem;
+        padding: 0.3rem 0.5rem;
+        font-size: 0.95rem;
+    }
+
+
+    /* Observaciones */
+
+    .obsInput {
+        width: calc(100% - 1.6rem);
+        margin: 0 0.8rem;
+        min-height: 5rem;
+        font-size: 0.95rem;
+    }
+
+
+    /* Botón */
+
+    .main-container > button {
+        width: calc(100% - 1.6rem);
+        margin: 1.2rem 0.8rem 0;
+        min-height: 2.5rem;
+        font-size: 1rem;
+    }
+
+
+    /* Revisiones */
+
+    .timeInput {
+        margin-left: 0.5rem;
+        height: 2.3rem;
+    }
+
+    .tempInput {
+        width: 4rem;
+        height: 2.3rem;
+        margin-left: 0.5rem;
+    }
 }

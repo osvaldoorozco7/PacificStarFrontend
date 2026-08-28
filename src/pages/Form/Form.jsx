@@ -109,72 +109,82 @@ const Form = () => {
 
             <h3>Datos</h3>
 
-            <div className="formDate">
+            <div className="formData">
 
-                <label htmlFor="unidad">
-                    Unidad:
-                </label>
+                <div className="form-field">
+                    <label htmlFor="unidad">
+                        Unidad:
+                    </label>
 
-                <select
-                    id="unidad"
-                    name="unidad"
-                    value={formData.unidad}
-                    onChange={handleChange}
-                    required
-                >
-                    <option value="">
-                        Seleccione una unidad
-                    </option>
-
-                    {unidades.map((unidad) => (
-                        <option
-                            key={unidad.numeroUnidad}
-                            value={unidad.numeroUnidad}
-                        >
-                            {unidad.numeroUnidad}
+                    <select
+                        id="unidad"
+                        name="unidad"
+                        value={formData.unidad}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">
+                            Seleccione unidad
                         </option>
-                    ))}
-                </select>
-                <br />
-                <label htmlFor="horasMotor">
-                    Horas del motor
-                </label>
 
-                <input 
-                type="number" 
-                id="horasMotor"
-                name="horasMotor"
-                value={formData.horasMotor}
-                onChange={handleChange}
-                required/>
+                        {unidades.map((unidad) => (
+                            <option
+                                key={unidad.numeroUnidad}
+                                value={unidad.numeroUnidad}
+                            >
+                                {unidad.numeroUnidad}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
-                <br />
 
-                <label htmlFor="fecha">
-                    Fecha
-                </label>
+                <div className="form-field">
+                    <label htmlFor="horasMotor">
+                        Horas del motor:
+                    </label>
 
-                <input
-                    type="date"
-                    id="fecha"
-                    name="fecha"
-                    value={formData.fecha}
-                    onChange={handleChange}
-                    required
-                />
+                    <input
+                        type="number"
+                        id="horasMotor"
+                        name="horasMotor"
+                        value={formData.horasMotor}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
 
-                <label htmlFor="horaEncendido">
-                    Hora de encendido
-                </label>
 
-                <input
-                    type="time"
-                    id="horaEncendido"
-                    name="horaEncendido"
-                    value={formData.horaEncendido}
-                    onChange={handleChange}
-                    required
-                />
+                <div className="form-field">
+                    <label htmlFor="fecha">
+                        Fecha:
+                    </label>
+
+                    <input
+                        type="date"
+                        id="fecha"
+                        name="fecha"
+                        value={formData.fecha}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
+
+                <div className="form-field">
+                    <label htmlFor="horaEncendido">
+                        Hora de encendido:
+                    </label>
+
+                    <input
+                        type="time"
+                        id="horaEncendido"
+                        name="horaEncendido"
+                        value={formData.horaEncendido}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
 
             </div>
 
@@ -184,89 +194,65 @@ const Form = () => {
             {/* ==================== */}
 
             <h3>Niveles y temperaturas</h3>
-
             <div className="datos_iniciales">
 
-                <label htmlFor="tempInicial">
-                    Temperatura inicial
-                </label>
+                <div className="form-field">
+                    <label htmlFor="tempInicial">
+                        Temperatura inicial
+                    </label>
 
-                <input
-                    type="number"
-                    id="tempInicial"
-                    name="tempInicial"
-                    value={formData.tempInicial}
-                    onChange={handleChange}
-                />
-
-                <br />
-
-
-                <label htmlFor="tempFinal">
-                    Set point
-                </label>
-
-                <input
-                    type="number"
-                    id="tempFinal"
-                    name="tempFinal"
-                    value={formData.tempFinal}
-                    onChange={handleChange}
-                />
-
-                <br />
-
-                {/*
-                <label htmlFor="nivelAceite">
-                    Nivel de aceite
-                </label>
-
-                <input
-                    type="text"
-                    id="nivelAceite"
-                    name="nivelAceite"
-                    value={formData.nivelAceite}
-                    onChange={handleChange}
-                />
-
-                <br />
+                    <input
+                        type="number"
+                        id="tempInicial"
+                        name="tempInicial"
+                        value={formData.tempInicial}
+                        onChange={handleChange}
+                    />
+                </div>
 
 
-                <label htmlFor="nivelAnticongelante">
-                    Nivel de anticongelante
-                </label>
+                <div className="form-field">
+                    <label htmlFor="tempFinal">
+                        Set point
+                    </label>
 
-                <input
-                    type="text"
-                    id="nivelAnticongelante"
-                    name="nivelAnticongelante"
-                    value={formData.nivelAnticongelante}
-                    onChange={handleChange}
-                />
+                    <input
+                        type="number"
+                        id="tempFinal"
+                        name="tempFinal"
+                        value={formData.tempFinal}
+                        onChange={handleChange}
+                    />
+                </div>
 
-                <br />
-                */}
 
-                <select
-                    id="nivelCombustible"
-                    name="nivelCombustible"
-                    value={formData.nivelCombustible}
-                    onChange={handleChange}
-                    required
-                >
-                    <option value="">
-                        Nivel
-                    </option>
+                <div className="form-field">
+                    <label htmlFor="nivelCombustible">
+                        Combustible
+                    </label>
 
-                    {combustible.map((nivel) => (
-                        <option
-                            key={nivel.value}
-                            value={nivel.value}
-                        >
-                            {nivel.label}
+                    <select
+                        id="nivelCombustible"
+                        name="nivelCombustible"
+                        value={formData.nivelCombustible}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">
+                            Nivel
                         </option>
-                    ))}
-                </select>
+
+                        {combustible.map((nivel) => (
+                            <option
+                                key={nivel.value}
+                                value={nivel.value}
+                            >
+                                {nivel.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
             </div>
 
             {/* ==================== */}
