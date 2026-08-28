@@ -213,7 +213,7 @@ const Form = () => {
                     step="0.1"
                     id="setPoint"
                     name="setPoint"
-                    value={formData.setPoint}
+                    value={formData.tempFinal}
                     onChange={handleChange}
                 />
 
