@@ -207,8 +207,7 @@ const Form = () => {
                 </label>
 
                 <input
-                    type="text"
-                    inputMode="decimal"
+                    type="number"
                     min="-30"
                     max="50"
                     step="0.1"
