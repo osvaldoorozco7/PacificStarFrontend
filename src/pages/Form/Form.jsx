@@ -64,7 +64,7 @@ const Form = () => {
     // Enviar formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(formData);
         const request = {
             numeroUnidad: Number(formData.unidad),
 
@@ -202,17 +202,14 @@ const Form = () => {
                 <br />
 
 
-                <label htmlFor="setPoint">
+                <label htmlFor="tempFinal">
                     Set point
                 </label>
 
                 <input
                     type="number"
-                    min="-30"
-                    max="50"
-                    step="0.1"
-                    id="setPoint"
-                    name="setPoint"
+                    id="tempFinal"
+                    name="tempFinal"
                     value={formData.tempFinal}
                     onChange={handleChange}
                 />
