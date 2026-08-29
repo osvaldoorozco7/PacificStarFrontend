@@ -55,6 +55,16 @@ const Form = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
+        if (name === "tempFinal") {
+               if(/^-?\d\*$/.test(value)) {
+                setFormData((prev) =>({
+                    ...prev,
+                    [name]: value
+                }));
+                return;
+               }
+        }
+        
         setFormData((prev) => ({
             ...prev,
             [name]: value
@@ -63,8 +73,8 @@ const Form = () => {
 
     // Enviar formulario
     const handleSubmit = async (e) => {
-        e.preventDefault();
         console.log(formData);
+        e.preventDefault();
         const request = {
             numeroUnidad: Number(formData.unidad),
 
@@ -207,6 +217,7 @@ const Form = () => {
                         name="tempInicial"
                         value={formData.tempInicial}
                         onChange={handleChange}
+                        required
                     />
                 </div>
 
@@ -222,6 +233,7 @@ const Form = () => {
                         name="tempFinal"
                         value={formData.tempFinal}
                         onChange={handleChange}
+                        required
                     />
                 </div>
 
