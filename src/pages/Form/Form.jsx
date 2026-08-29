@@ -218,7 +218,6 @@ const Form = () => {
 
                     <input
                         type="text"
-                        inputMode="decimal"
                         id="tempFinal"
                         name="tempFinal"
                         value={formData.tempFinal}
