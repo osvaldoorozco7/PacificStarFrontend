@@ -217,7 +217,8 @@ const Form = () => {
                     </label>
 
                     <input
-                        type="number"
+                        type="text"
+                        inputMode="decimal"
                         id="tempFinal"
                         name="tempFinal"
                         value={formData.tempFinal}
