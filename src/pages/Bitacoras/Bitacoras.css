@@ -229,6 +229,31 @@ tbody tr:nth-child(even):hover {
     font-weight: 500;
 }
 
+/* ========================== */
+/* ACCIONES */
+/* ========================== */
+
+.bitacora-actions {
+    width: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-evenly;
+}
+
+.bitacora-actions > button {
+    width: 5rem;
+    height: 3rem;
+    color: #ddd;
+    border-radius: 0.7rem;
+}
+
+.action-edit {
+    background-color: #2892D7;
+}
+
+.action-delete {
+    background-color: crimson;
+}
 
 /* ========================= */
 /* FLECHA */

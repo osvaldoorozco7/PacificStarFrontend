@@ -10,3 +10,8 @@ export const getBitacoras = async () => {
     console.log(response);
     return response.data;
 };
+
+export const delBitacora = async (id) => {
+    const response = await api.delete(`/Bitacora/${id}`);
+    return response.data;
+};

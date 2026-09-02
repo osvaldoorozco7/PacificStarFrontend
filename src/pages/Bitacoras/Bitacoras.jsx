@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { getBitacoras } from "../../services/bitacoraService";
+import { delBitacora, getBitacoras } from "../../services/bitacoraService";
 import "./Bitacoras.css";
+import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const Bitacoras = () => {
-
+    const navigate = useNavigate();
     const [bitacoras, setBitacoras] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -103,6 +105,19 @@ const Bitacoras = () => {
         cargarBitacoras();
 
     }, []);
+
+    // =========================
+    // ELIMINAR BITACORA
+    // =========================
+
+    const eliminarBitacora = async (id) => {
+        try {
+            const eliminar = await delBitacora(id);
+            navigate("/");
+        } catch (error) {
+            console.error( "No se pudo eliminar bitácora.", error);
+        }
+    };
 
 
     // =========================
@@ -344,7 +359,7 @@ const Bitacoras = () => {
                                 {/* ================= */}
 
                                 {isExpanded && (
-
+                                    <>
                                     <div className="bitacora-details">
 
                                         <div className="detail-row">
@@ -359,6 +374,14 @@ const Bitacoras = () => {
                                                 )}
                                             </strong>
 
+                                        </div>
+
+                                        <div className="detail-row">
+                                            <span>Número de bitácora</span>
+
+                                            <strong>
+                                                {bitacora.id}
+                                            </strong>
                                         </div>
 
 
@@ -434,6 +457,11 @@ const Bitacoras = () => {
 
                                     </div>
 
+                                    <div className="bitacora-actions">
+                                        <button className="action-edit">Editar</button>
+                                        <button className="action-delete" onClick={() => eliminarBitacora(bitacora.id)}>Eliminar</button>
+                                    </div>
+                                    </>
                                 )}
 
                             </div>
