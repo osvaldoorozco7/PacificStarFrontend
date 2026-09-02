@@ -18,7 +18,7 @@ const Form = () => {
     { label: "7/8", value: 0.875 },
     { label: "Full", value: 1 }
     ];
-    const estado = ["Bueno", "Malo"];
+    const [isDisabled, setIsDisabled] = useState(false);
 
     const [formData, setFormData] = useState(() => {
         const ahora = new Date();
@@ -73,8 +73,11 @@ const Form = () => {
 
     // Enviar formulario
     const handleSubmit = async (e) => {
-        console.log(formData);
         e.preventDefault();
+        if (isDisabled) return;
+
+        setIsDisabled(true);
+
         const request = {
             numeroUnidad: Number(formData.unidad),
 
@@ -289,8 +292,8 @@ const Form = () => {
 
             <br />
 
-            <button type="submit">
-                Guardar
+            <button type="submit" disabled={isDisabled}>
+                {isDisabled ? "Guardando..." : "Guardar"}
             </button>
 
         </form>
