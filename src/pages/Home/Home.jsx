@@ -20,6 +20,10 @@ function Home() {
                 <button onClick={() => navigate("/bitacoras")}>
                     Ver bitácoras
                 </button>
+                <br />
+                <button onClick={() => navigate("/unidades")}>
+                    Ver unidades
+                </button>
             </div>
         </div>
     );
