@@ -40,6 +40,10 @@ function Navbar() {
         <Link to="/bitacoras" onClick={cerrarMenu}>
           Bitacoras
         </Link>
+
+        <Link to="/unidades" onClick={cerrarMenu}>
+          Unidades
+        </Link>
       </aside>
     </>
   );

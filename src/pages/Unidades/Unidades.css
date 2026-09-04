@@ -1,0 +1,52 @@
+.unidades-main-container {
+    display: grid;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.unidades-header {
+    display:flex;
+    justify-content: center;
+    margin: 1rem 2rem;
+}
+
+.mobile-list {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.unidad-card {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    padding: 1rem;
+}
+
+.unidad-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.unidad-row:last-child {
+    border-bottom: none;
+}
+
+.unidad-row span {
+    color: #666;
+}
+
+.unidad-row strong {
+    color: #222;
+}
+
+@media (max-width: 600px) {
+    .mobile-list {
+        display: block;
+    }
+}
