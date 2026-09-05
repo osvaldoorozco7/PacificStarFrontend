@@ -11,10 +11,10 @@ const Unidades = () => {
     const [expandedId, setExpandedId] = useState(null);
 
     /* =================== */
-    /* SEMÁFORO */
+    /* SEMÁFORO            */
     /* =================== */
     const handleStatus = (status) => {
-        const color = status === true ? "green" : "red";
+        const color = status === true ? "green" : "salmon";
         
 
         return {
@@ -77,11 +77,12 @@ const Unidades = () => {
 
                             <div className="unidad-row">
                                 <span>Unidad</span>
-                                <strong>{unidad.numeroUnidad}</strong>
+                                <span>Horas motor</span>
+
                             </div>
 
-                            <div className="unidad-row" >
-                                <span>Horas del motor</span>
+                            <div className="unidad-row">
+                                <strong>{unidad.numeroUnidad}</strong>
                                 <strong>{unidad.horasMotor ?? "-"}</strong>
                             </div>
 
