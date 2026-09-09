@@ -13,14 +13,34 @@ const Unidades = () => {
     /* =================== */
     /* SEMÁFORO            */
     /* =================== */
-    const handleStatus = (status) => {
-        const color = status === true ? "green" : "salmon";
-        
+const handleServiceStatus = (horasMotor) => {
+    let color;
 
-        return {
-            backgroundColor: color
-        };
+    if (horasMotor == null) {
+        color = "#eeeeee"; 
+    } else if (horasMotor < 100) {
+        color = "#20f02059";
+    } else if (horasMotor < 200) {
+        color = "#f0f02059";
+    } else {
+        color = "#fa000046";
+    }
+
+    return {
+        backgroundColor: color
     };
+};
+
+const handleCardStatus = (horasMotor, active) => {
+    if (!active) {
+        return {
+            backgroundColor: "#80808050",
+            color: "white"
+        };
+    }
+
+    return handleServiceStatus(horasMotor);
+};
 
     /* =================== */
     /* Cargar unidades     */
@@ -69,13 +89,14 @@ const Unidades = () => {
             <div className="mobile-list">
                 {unidades.length === 0 ? (
                     <div className="status-message">
-                        No hay unidades
+                        Cargando unidades
                     </div>
                 ) : (
                     unidades.map((unidad) => (
-                        <div className="unidad-card" key={unidad.numeroUnidad}>
+                        <div className="unidad-card" key={unidad.numeroUnidad} style={handleCardStatus(unidad.horasMotor, unidad.active)}>
 
-                            <div className="unidad-row">
+
+                            <div className="unidad-row" >
                                 <span>Unidad</span>
                                 <span>Horas motor</span>
 
