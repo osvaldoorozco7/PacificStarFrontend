@@ -43,6 +43,16 @@ const handleCardStatus = (horasMotor, active) => {
 };
 
     /* =================== */
+    /* EXPANDIR TARJETA    */
+    /* =================== */
+
+    const toggleDetails = (id) => {
+
+        setExpandedId(expandedId === id ? null : id);
+
+    };
+
+    /* =================== */
     /* Cargar unidades     */
     /* =================== */
 
@@ -92,24 +102,52 @@ const handleCardStatus = (horasMotor, active) => {
                         Cargando unidades
                     </div>
                 ) : (
-                    unidades.map((unidad) => (
-                        <div className="unidad-card" key={unidad.numeroUnidad} style={handleCardStatus(unidad.horasMotor, unidad.active)}>
+                    unidades.map((unidad) => {
 
+                        const isExpanded = expandedId === unidad.numeroUnidad;
 
-                            <div className="unidad-row" >
-                                <span>Unidad</span>
-                                <span>Horas motor</span>
+                        return(
+                            <div className="unidad-card" key={unidad.numeroUnidad} style={handleCardStatus(unidad.horasMotor, unidad.active)}>
+                                
+                                <button
+                                    type="button"
+                                    className="unidad-summary"
+                                    onClick={() => toggleDetails(unidad.numeroUnidad)}>
+                                    <div className="unidad-status-row">
+                                        <strong>
+                                            {unidad.active === true ? null : "FUERA DE SERVICIO"}
+                                        </strong>
+                                    </div>
 
+                                    <div className="unidad-row" >
+                                        <span>Unidad</span>
+                                        <span>Horas motor</span>
+                                    </div>
+
+                                    <div className="unidad-row">
+                                        <strong>{unidad.numeroUnidad}</strong>
+                                        <strong>{unidad.horasMotor ?? "-"}</strong>
+                                    </div>
+
+                                    <div className="unidad-row-arrow">
+                                        <img src="/down-arrow.svg" alt="" />
+                                    </div>
+                                </button>
+
+                                {isExpanded && (
+                                    <>
+                                    <div className="unidad-details">
+                                        Hola
+                                    </div>
+                                    </>
+                                )
+
+                                }
                             </div>
-
-                            <div className="unidad-row">
-                                <strong>{unidad.numeroUnidad}</strong>
-                                <strong>{unidad.horasMotor ?? "-"}</strong>
-                            </div>
-
-                        </div>
-                    ))
+                        );
+                    })
                 )}
+
             </div>
 
         </div>
