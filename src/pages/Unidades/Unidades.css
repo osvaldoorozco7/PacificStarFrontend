@@ -45,15 +45,6 @@
     justify-content: end;
 }
 
-.unidad-row-arrow {
-    height: 1.5rem;
-    display: grid;
-    justify-content: end;
-}
-
-.unidad-row-arrow > img{
-    height: 1.5rem;
-}
 .disabled {
     background-color: red;
 }
@@ -72,5 +63,14 @@
 @media (max-width: 600px) {
     .mobile-list {
         display: block;
+    }
+
+    .unidad-row-arrow {
+        display: grid;
+        justify-content: end;
+    }
+
+    .unidad-row-arrow > img{
+        height: 1.5rem;
     }
 }

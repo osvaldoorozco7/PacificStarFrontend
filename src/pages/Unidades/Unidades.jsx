@@ -134,10 +134,10 @@ const Unidades = () => {
                                     isExpanded ? "expanded" : ""
                                 }`}
                                 key={unidad.numeroUnidad}
-                                style={handleCardStatus(
+                                 /*style={handleCardStatus(
                                     unidad.horasMotor,
-                                    unidad.active
-                                )}
+                                    unidad.active 
+                                )}*/
                             >
 
                                 <button
@@ -154,19 +154,20 @@ const Unidades = () => {
                                         <strong>
                                             {unidad.active
                                                 ? ""
-                                                : "FUERA DE SERVICIO"}
+                                                : "UNIDAD FUERA DE SERVICIO"}
                                         </strong>
                                     </div>
 
                                     <div className="unidad-row">
                                         <span>Unidad</span>
-                                        <span>Horas motor</span>
-                                    </div>
-
-                                    <div className="unidad-row">
+                                        
                                         <strong>
                                             {unidad.numeroUnidad}
                                         </strong>
+                                    </div>
+
+                                    <div className="unidad-row">
+                                        <span>Horas motor</span>
 
                                         <strong>
                                             {unidad.horasMotor ?? "-"}
@@ -184,7 +185,15 @@ const Unidades = () => {
 
                                 {isExpanded && (
                                     <div className="unidad-details">
-                                        <p>Hola</p>
+                                        <div className="unidad-row">
+                                            <span>Modelo</span>
+                                            <strong>{unidad.modelo}</strong>
+                                        </div>
+
+                                        <div className="unidad-row">
+                                            <span>Fecha de último servicio</span>
+                                            <strong>-</strong>
+                                        </div>
                                     </div>
                                 )}
 
