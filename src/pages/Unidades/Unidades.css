@@ -60,6 +60,19 @@
     color: #222;
 }
 
+.unidades-actions {
+    display: grid;
+    justify-content: stretch;
+    justify-items: center;
+}
+.unidades-actions > button{
+    color: #ddd;
+    width: 90%;
+    height: 3rem;
+    border-radius: 0.7rem;
+    font-size: 1.1rem;
+}
+
 @media (max-width: 600px) {
     .mobile-list {
         display: block;

@@ -19,6 +19,7 @@ function Navbar() {
         <ul className="desktop-menu">
           <li><Link to="/">Inicio</Link></li>
           <li><Link to="/nueva-bitacora">Nueva Bitácora</Link></li>
+          <li><Link to="/servicio">Agregar servicio</Link></li>
         </ul>
       </nav>
 
@@ -43,6 +44,10 @@ function Navbar() {
 
         <Link to="/unidades" onClick={cerrarMenu}>
           Unidades
+        </Link>
+
+        <Link to="/servicio" onClick={cerrarMenu}>
+          Agregar servicio
         </Link>
       </aside>
     </>

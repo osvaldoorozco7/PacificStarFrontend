@@ -187,6 +187,7 @@ const Unidades = () => {
                                 </button>
 
                                 {isExpanded && (
+                                    <>
                                     <div className="unidad-details">
                                         <div className="unidad-row">
                                             <span>Modelo</span>
@@ -203,6 +204,14 @@ const Unidades = () => {
                                             <strong>{unidad.ultimoServicio}</strong>
                                         </div>
                                     </div>
+
+                                    <div className="unidades-actions">
+                                        <button className="action-edit">
+                                            Editar
+                                        </button>
+                                    </div>
+                                    </>
+
                                 )}
 
                             </div>
