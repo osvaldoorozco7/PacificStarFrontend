@@ -15,14 +15,15 @@ const Unidades = () => {
     /* SEMÁFORO            */
     /* =================== */
 
-    const handleServiceStatus = (horasMotor) => {
+    const handleServiceStatus = (horasMotor, ultimoServicio) => {
         let color;
+        var result = horasMotor - ultimoServicio;
 
-        if (horasMotor == null) {
+        if (result == null) {
             color = "#eeeeee";
-        } else if (horasMotor < 100) {
+        } else if (result < 900) {
             color = "#20f02059";
-        } else if (horasMotor < 200) {
+        } else if (result > 980 && result < 1000) {
             color = "#f0f02059";
         } else {
             color = "#fa000046";
@@ -33,7 +34,7 @@ const Unidades = () => {
         };
     };
 
-    const handleCardStatus = (horasMotor, active) => {
+    const handleCardStatus = (horasMotor, ultimoServicio, active) => {
         if (!active) {
             return {
                 backgroundColor: "#80808050",
@@ -41,7 +42,7 @@ const Unidades = () => {
             };
         }
 
-        return handleServiceStatus(horasMotor);
+        return handleServiceStatus(horasMotor, ultimoServicio);
     };
 
     /* =================== */
@@ -134,10 +135,11 @@ const Unidades = () => {
                                     isExpanded ? "expanded" : ""
                                 }`}
                                 key={unidad.numeroUnidad}
-                                 /*style={handleCardStatus(
+                                 style={handleCardStatus(
                                     unidad.horasMotor,
+                                    unidad.ultimoServicio,
                                     unidad.active 
-                                )}*/
+                                )}
                             >
 
                                 <button
@@ -175,8 +177,9 @@ const Unidades = () => {
                                     </div>
 
                                     <div className="unidad-row-arrow">
+                                        
                                         <img
-                                            src="/down-arrow.svg"
+                                            src={isExpanded ?"/up-arrow.svg" :"/down-arrow.svg" }
                                             alt="Mostrar detalles"
                                         />
                                     </div>
@@ -193,6 +196,11 @@ const Unidades = () => {
                                         <div className="unidad-row">
                                             <span>Fecha de último servicio</span>
                                             <strong>-</strong>
+                                        </div>
+
+                                        <div className="unidad-row">
+                                            <span>Horas de último servicio</span>
+                                            <strong>{unidad.ultimoServicio}</strong>
                                         </div>
                                     </div>
                                 )}
