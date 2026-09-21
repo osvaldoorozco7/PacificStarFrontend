@@ -1,0 +1,19 @@
+.servicio-main-container {
+    display: grid;
+    justify-content: stretch;
+    padding: 0 2rem;
+} 
+
+.servicio-main-container > div{
+    display: flex;
+    grid-auto-flow: column;
+}
+
+@media (max-width: 600px) {
+    .servicio-main-container > button {
+        width: calc(100% - 1.6rem);
+        margin: 1.2rem 0.8rem 0;
+        min-height: 2.5rem;
+        font-size: 1rem;
+    }
+}
