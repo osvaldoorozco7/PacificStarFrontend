@@ -9,6 +9,16 @@
     grid-auto-flow: column;
 }
 
+.servicio-main-container > .form-field {
+    margin: 0.5rem 0;
+}
+
+.servicio-main-container > button {
+    background-color: #2892D7;
+    color: white;
+    border-radius: 5px;
+}
+
 @media (max-width: 600px) {
     .servicio-main-container > button {
         width: calc(100% - 1.6rem);
