@@ -24,6 +24,10 @@ function Home() {
                 <button onClick={() => navigate("/unidades")}>
                     Ver unidades
                 </button>
+                <br />
+                <button onClick={() => navigate("/servicio")}>
+                    Agregar servicio
+                </button>
             </div>
         </div>
     );
