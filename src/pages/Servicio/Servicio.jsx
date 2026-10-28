@@ -63,8 +63,8 @@ const Servicio = () => {
                     </label>
 
                     <select
-                        id="unidad"
-                        name="unidad"
+                        id="id"
+                        name="id"
                         value={formData.id}
                         onChange={handleService}
                         required
