@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Servicio.css";
 import { getUnidades, saveServicio } from "../../services/unidadService";
+import { useNavigate } from "react-router-dom";
 
 const Servicio = () => {
+    const navigate = useNavigate();
     const [unidades, setUnidades] = useState([]);
+    const [isDisabled, setIsDisabled] = useState(false);
     const [formData, setFormData] = useState({
         id: "",
         horasServicio: "",
@@ -32,6 +35,9 @@ const Servicio = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if(isDisabled) return;
+
+        setIsDisabled(true);
 
         const { id, horasServicio, fechaServicio } = formData;
 
@@ -41,11 +47,7 @@ const Servicio = () => {
                 horasServicio,
                 fechaServicio
             );
-
-            console.log("Servicio guardado:", response);
-
-            setFormData({ id: "", horasServicio: "", fechaServicio: "" });
-
+            navigate("/");
         } catch (error) {
             console.error("Error al guardar el servicio:", error);
         }
@@ -106,8 +108,8 @@ const Servicio = () => {
                     />
                 </div>
 
-                <button type="submit">
-                    Guardar
+                <button type="submit" disabled={isDisabled}>
+                    {isDisabled ? "Guardando..." : "Guardar"}
                 </button>
             </div>
 

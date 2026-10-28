@@ -66,7 +66,7 @@ const Unidades = () => {
                 setError("");
 
                 const data = await getUnidades();
-
+                console.log(data);
                 setUnidades(data);
 
             } catch (error) {
@@ -136,7 +136,8 @@ const Unidades = () => {
                                  style={handleCardStatus(
                                     unidad.horasMotor,
                                     unidad.ultimoServicio,
-                                    unidad.active 
+                                    unidad.active,
+                                    unidad.fechaUltimoServicio
                                 )}
                             >
 
@@ -194,7 +195,7 @@ const Unidades = () => {
 
                                         <div className="unidad-row">
                                             <span>Fecha de último servicio</span>
-                                            <strong>-</strong>
+                                            <strong>{unidad.fechaUltimoServicio}</strong>
                                         </div>
 
                                         <div className="unidad-row">

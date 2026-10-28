@@ -94,8 +94,6 @@ const Form = () => {
             tempFinal: Number(formData.tempFinal)
         };
 
-        console.log("Enviando:", request);
-
         try {
             const response = await saveBitacora(request);
             navigate("/");
