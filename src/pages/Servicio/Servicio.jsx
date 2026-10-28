@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Servicio.css";
-import { saveServicio } from "../../services/unidadService";
+import { getUnidades, saveServicio } from "../../services/unidadService";
 
 const Servicio = () => {
-
+    const [unidades, setUnidades] = useState([]);
     const [formData, setFormData] = useState({
         id: "",
         horasServicio: "",
         fechaServicio: ""
     });
+
+    useEffect(() => {
+        const cargarUnidades = async () => {
+            try {
+                const data = await getUnidades();
+                setUnidades(data);
+            } catch (error) {
+                console.error("Error al obtener las unidades:", error)
+            }
+        };
+        cargarUnidades();
+    }, []);
 
     const handleService = (e) => {
         const { name, value } = e.target;
@@ -46,14 +58,30 @@ const Servicio = () => {
                 <h1>Servicio de motor</h1>
                 
                 <div className="form-field">
-                    <label htmlFor="id">Unidad: </label>
-                    <input 
-                        type="text" 
-                        name="id" 
-                        id="id" 
-                        value={formData.id} 
+                    <label htmlFor="unidad">
+                        Unidad:
+                    </label>
+
+                    <select
+                        id="unidad"
+                        name="unidad"
+                        value={formData.id}
                         onChange={handleService}
-                    />
+                        required
+                    >
+                        <option value="">
+                            Seleccione unidad
+                        </option>
+
+                        {unidades.map((unidad) => (
+                            <option
+                                key={unidad.numeroUnidad}
+                                value={unidad.numeroUnidad}
+                            >
+                                {unidad.numeroUnidad}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="form-field">
