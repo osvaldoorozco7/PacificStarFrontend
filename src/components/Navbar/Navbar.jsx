@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const cerrarMenu = () => setMenuOpen(false);
@@ -10,7 +11,7 @@ function Navbar() {
   return (
     <>
       <nav className="navbar">
-        <h2 className="logo">Pacific Star</h2>
+        <h2 className="logo" onClick={() => navigate("/")}>Pacific Star</h2>
 
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
@@ -18,7 +19,9 @@ function Navbar() {
 
         <ul className="desktop-menu">
           <li><Link to="/">Inicio</Link></li>
-          <li><Link to="/nueva-bitacora">Nueva Bitácora</Link></li>
+          <li><Link to="/nueva-bitacora">Nueva bitácora</Link></li>
+          <li><Link to="/bitacoras">Bitácoras</Link></li>
+          <li><Link to="/unidades"> Unidades</Link></li>
           <li><Link to="/servicio">Agregar servicio</Link></li>
         </ul>
       </nav>
@@ -35,7 +38,7 @@ function Navbar() {
         </Link>
 
         <Link to="/nueva-bitacora" onClick={cerrarMenu}>
-          Nueva Bitácora
+          Nueva bitácora
         </Link>
 
         <Link to="/bitacoras" onClick={cerrarMenu}>

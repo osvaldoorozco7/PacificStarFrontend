@@ -2,28 +2,62 @@
     display: grid;
     justify-content: stretch;
     padding: 0 2rem;
-} 
-
-.servicio-main-container > div{
-    display: flex;
-    grid-auto-flow: column;
 }
 
+/* Contenedores internos */
+.servicio-main-container > div {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Campos */
 .servicio-main-container > .form-field {
     margin: 0.5rem 0;
 }
 
+/* Botón */
 .servicio-main-container > button {
     background-color: #2892D7;
     color: white;
+    border: none;
     border-radius: 5px;
+
+    min-height: 2.5rem;
+
+    transition: transform 0.3s ease;
 }
 
-@media (max-width: 600px) {
+.servicio-main-container > button:hover {
+    transform: scale(1.03);
+}
+
+
+/* ==================================
+   MÓVILES PEQUEÑOS
+   hasta 480px
+   ================================== */
+
+@media screen and (max-width: 480px) {
+
+    .servicio-main-container {
+        padding: 0 0.8rem;
+    }
+
+    .servicio-main-container > div {
+        flex-direction: column;
+    }
+
     .servicio-main-container > button {
         width: calc(100% - 1.6rem);
         margin: 1.2rem 0.8rem 0;
+
         min-height: 2.5rem;
+
         font-size: 1rem;
     }
 }
+
+
+/* ==================================
+   MÓVILES GRANDES / TABLETS
+   481px 

@@ -12,8 +12,23 @@
 }
 
 .logo {
+    margin: 0;
+
     color: white;
-    background-color: #003366;
+
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08rem;
+
+    cursor: default;
+}
+
+.logo span {
+    color: #2892D7;
+}
+
+.logo:hover span {
+    color: #55b9fa;
 }
 
 .desktop-menu {
