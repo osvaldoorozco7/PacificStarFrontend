@@ -66,7 +66,6 @@ const Unidades = () => {
                 setError("");
 
                 const data = await getUnidades();
-                console.log(data);
                 setUnidades(data);
 
             } catch (error) {

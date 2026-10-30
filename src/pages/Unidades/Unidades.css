@@ -1,89 +1,431 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL
+   ========================================= */
+
 .unidades-main-container {
     display: grid;
     width: 100%;
     box-sizing: border-box;
 }
 
+
+/* =========================================
+   HEADER
+   ========================================= */
+
 .unidades-header {
-    display:flex;
+    display: flex;
     justify-content: center;
+    align-items: center;
     margin: 1rem 2rem;
 }
 
+
+/* =========================================
+   LISTA DE UNIDADES
+   ========================================= */
+
 .mobile-list {
+    display: block;
     width: 100%;
     box-sizing: border-box;
-    padding:0.3rem;
+    padding: 0.3rem;
 }
+
+
+/* =========================================
+   TARJETA DE UNIDAD
+   ========================================= */
 
 .unidad-card {
     width: 100%;
     box-sizing: border-box;
+
     border: 1px solid gray;
     border-radius: 8px;
+
     padding: 0.5rem;
     margin: 0.5rem 0;
+
     color: black;
 }
+
+
+/* Botón principal de la tarjeta */
 
 .unidad-card > button {
     width: 100%;
     border: none;
     background-color: transparent;
+    cursor: pointer;
+
+    padding: 0;
 }
+
+
+/* =========================================
+   FILAS
+   ========================================= */
 
 .unidad-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.6rem 0;
-    font-size: 1.1rem;
-    
-.unidad-status-row {
-    color: black;
-    display: grid;
-    justify-content: end;
-}
 
-.disabled {
-    background-color: red;
-}
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0.6rem 0;
+
+    font-size: 1.1rem;
 
     border-bottom: none;
 }
+
+
+/* Texto secundario */
 
 .unidad-row span {
     color: #666;
 }
 
+
+/* Texto principal */
+
 .unidad-row strong {
     color: #222;
 }
+
+
+/* =========================================
+   ESTATUS
+   ========================================= */
+
+.unidad-status-row {
+    display: grid;
+    justify-content: end;
+
+    width: 100%;
+
+    color: black;
+}
+
+
+/* Unidad deshabilitada */
+
+.disabled {
+    background-color: red;
+}
+
+
+/* =========================================
+   FLECHA
+   ========================================= */
+
+.unidad-row-arrow {
+    display: grid;
+    justify-content: end;
+
+    width: 100%;
+}
+
+
+.unidad-row-arrow > img {
+    height: 1.5rem;
+}
+
+
+/* =========================================
+   ACCIONES
+   ========================================= */
 
 .unidades-actions {
     display: grid;
     justify-content: stretch;
     justify-items: center;
+
+    width: 100%;
+
+    gap: 0.8rem;
 }
-.unidades-actions > button{
-    color: #ddd;
+
+
+.unidades-actions > button {
     width: 90%;
     height: 3rem;
+
+    color: #ddd;
+
     border-radius: 0.7rem;
+
     font-size: 1.1rem;
 }
 
-@media (max-width: 600px) {
+
+/* =========================================
+   MÓVILES PEQUEÑOS
+   0px - 480px
+   ========================================= */
+
+@media screen and (max-width: 480px) {
+
+    .unidades-main-container {
+        padding: 0;
+    }
+
+
+    .unidades-header {
+        margin: 0.8rem;
+    }
+
+
+    .mobile-list {
+        width: 100%;
+        padding: 0.3rem;
+    }
+
+
+    .unidad-card {
+        width: 100%;
+
+        padding: 0.5rem;
+        margin: 0.5rem 0;
+    }
+
+
+    .unidad-row {
+        padding: 0.5rem 0;
+
+        font-size: 1rem;
+    }
+
+
+    .unidad-row-arrow > img {
+        height: 1.3rem;
+    }
+
+
+    .unidades-actions > button {
+        width: 95%;
+        height: 2.8rem;
+
+        font-size: 1rem;
+    }
+}
+
+
+/* =========================================
+   MÓVILES GRANDES / TABLETS
+   481px - 768px
+   ========================================= */
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+    .unidades-main-container {
+        padding: 0 0.5rem;
+    }
+
+
+    .unidades-header {
+        margin: 1rem 1.5rem;
+    }
+
+
+    .mobile-list {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+
+    .unidad-card {
+        width: 100%;
+
+        padding: 0.7rem;
+        margin: 0.6rem 0;
+    }
+
+
+    .unidad-row {
+        font-size: 1.1rem;
+    }
+
+
+    .unidad-row-arrow > img {
+        height: 1.5rem;
+    }
+
+
+    .unidades-actions > button {
+        width: 90%;
+        height: 3rem;
+
+        font-size: 1.1rem;
+    }
+}
+
+
+/* =========================================
+   TABLETS / LAPTOPS PEQUEÑAS
+   769px - 1024px
+   ========================================= */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+    .unidades-main-container {
+        padding: 0 1rem;
+    }
+
+
+    .unidades-header {
+        margin: 1.2rem 2rem;
+    }
+
+
     .mobile-list {
         display: block;
+
+        width: 100%;
+
+        padding: 0.8rem;
+
+        margin: 0 auto;
     }
 
-    .unidad-row-arrow {
-        display: grid;
-        justify-content: end;
+
+    .unidad-card {
+        width: 100%;
+
+        padding: 0.8rem;
+        margin: 0.7rem 0;
     }
 
-    .unidad-row-arrow > img{
+
+    .unidad-row {
+        font-size: 1.1rem;
+    }
+
+
+    .unidad-row-arrow > img {
         height: 1.5rem;
+    }
+
+
+    .unidades-actions > button {
+        width: 70%;
+        height: 3rem;
+
+        font-size: 1.1rem;
+    }
+}
+
+
+/* =========================================
+   LAPTOP / ESCRITORIO
+   1025px - 1440px
+   ========================================= */
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+
+    .unidades-main-container {
+        padding: 0 2rem;
+    }
+
+
+    .unidades-header {
+        margin: 1.5rem 2rem;
+    }
+
+
+    .mobile-list {
+        display: block;
+
+        width: 90%;
+
+        padding: 0.8rem;
+
+        margin: 0 auto;
+    }
+
+
+    .unidad-card {
+        width: 100%;
+
+        padding: 1rem;
+        margin: 0.8rem 0;
+    }
+
+
+    .unidad-row {
+        font-size: 1.2rem;
+    }
+
+
+    .unidad-row-arrow > img {
+        height: 1.6rem;
+    }
+
+
+    .unidades-actions > button {
+        width: 60%;
+        height: 3rem;
+
+        font-size: 1.1rem;
+    }
+}
+
+
+/* =========================================
+   PANTALLAS GRANDES
+   1441px EN ADELANTE
+   ========================================= */
+
+@media screen and (min-width: 1441px) {
+
+    .unidades-main-container {
+        padding: 0 3rem;
+    }
+
+
+    .unidades-header {
+        margin: 1.5rem 2rem;
+    }
+
+
+    .mobile-list {
+        display: block;
+
+        width: 80%;
+
+        padding: 1rem;
+
+        margin: 0 auto;
+    }
+
+
+    .unidad-card {
+        width: 100%;
+
+        padding: 1.2rem;
+        margin: 1rem 0;
+    }
+
+
+    .unidad-row {
+        padding: 0.8rem 0;
+
+        font-size: 1.25rem;
+    }
+
+
+    .unidad-row-arrow > img {
+        height: 1.7rem;
+    }
+
+
+    .unidades-actions > button {
+        width: 50%;
+        height: 3.2rem;
+
+        font-size: 1.2rem;
     }
 }

@@ -5,31 +5,129 @@
     width: 100%;
 }
 
+.home-main-container > h1 {
+    margin: 1.5rem;
+}
+
 a {
     text-decoration: none;
     color: white;
 }
 
-.botones-container > button:hover{
-    scale: 1.5;
+/* =========================
+   ESTILOS BASE - MÓVIL
+   ========================= */
+
+.botones-container {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+}
+
+.botones-container > button {
+    height: 4rem;
+    width: 90%;
+    font-size: 1.2rem;
+    background-color: #2892D7;
+    color: white;
+    border: none;
+    border-radius: 0.8rem;
     transition: 0.4s ease;
 }
 
-@media screen and (max-width:768px) {
+.botones-container > button:hover {
+    scale: 1.05;
+}
+
+
+/* =========================
+   MÓVILES PEQUEÑOS
+   hasta 480px
+   ========================= */
+
+@media screen and (max-width: 480px) {
+
+    .botones-container > button {
+        width: 90%;
+        height: 3.5rem;
+        font-size: 1rem;
+    }
+
+}
+
+
+/* =========================
+   MÓVILES / TABLETS
+   481px - 768px
+   ========================= */
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+    .botones-container > button {
+        width: 80%;
+        height: 4rem;
+        font-size: 1.5rem;
+    }
+
+}
+
+
+/* =========================
+   TABLETS / LAPTOP PEQUEÑA
+   769px - 1024px
+   ========================= */
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
 
     .botones-container {
-        width: 100%;
-        display: grid;
-        justify-items: center;
+        width: 90%;
     }
 
     .botones-container > button {
+        width: 70%;
         height: 4rem;
-        align-items: center;
-        width: 80%;
-        font-size: 1.5rem;
-        background-color: #2892D7;
-        color: white;
-        border-radius: 0.8rem;
+        font-size: 1.4rem;
     }
+
+}
+
+
+/* =========================
+   LAPTOP / ESCRITORIO
+   1025px - 1440px
+   ========================= */
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+
+    .botones-container {
+        width: 80%;
+    }
+
+    .botones-container > button {
+        width: 60%;
+        height: 4rem;
+        font-size: 1.3rem;
+    }
+
+}
+
+
+/* =========================
+   PANTALLAS GRANDES
+   1441px en adelante
+   ========================= */
+
+@media screen and (min-width: 1441px) {
+
+    .botones-container {
+        width: 70%;
+    }
+
+    .botones-container > button {
+        width: 50%;
+        height: 4.5rem;
+        font-size: 1.4rem;
+    }
+
 }
