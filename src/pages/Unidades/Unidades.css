@@ -1,431 +1,247 @@
-/* =========================================
-   CONTENEDOR PRINCIPAL
-   ========================================= */
+
+/* ============================= */
+/* CONTENEDOR PRINCIPAL           */
+/* ============================= */
 
 .unidades-main-container {
     display: grid;
     width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem;
     box-sizing: border-box;
 }
-
-
-/* =========================================
-   HEADER
-   ========================================= */
 
 .unidades-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem 2rem;
+    margin-bottom: 1.5rem;
 }
 
+.unidades-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
 
-/* =========================================
-   LISTA DE UNIDADES
-   ========================================= */
+/* ============================= */
+/* ESTADOS                       */
+/* ============================= */
 
-.mobile-list {
+.status-message {
+    width: 100%;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    text-align: center;
+    color: #666;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.status-message.error {
+    color: #b42318;
+    background-color: #fff5f5;
+    border-color: #f0b8b8;
+}
+
+/* ============================= */
+/* DESKTOP                       */
+/* ============================= */
+
+.desktop-table {
     display: block;
     width: 100%;
-    box-sizing: border-box;
-    padding: 0.3rem;
 }
 
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+}
 
-/* =========================================
-   TARJETA DE UNIDAD
-   ========================================= */
+.desktop-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.desktop-table th {
+    padding: 1rem;
+    background-color: #2892D7;
+    color: white;
+    font-size: 0.95rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.desktop-table td {
+    padding: 0.9rem;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.desktop-table tbody tr {
+    transition: filter 0.2s ease;
+}
+
+.desktop-table tbody tr:hover {
+    filter: brightness(0.95);
+}
+
+/* Estado de unidad */
+
+.unidad-estado {
+    display: inline-block;
+    padding: 0.35rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.unidad-estado.activa {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.unidad-estado.inactiva {
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+/* ============================= */
+/* MÓVIL                         */
+/* ============================= */
+
+.mobile-list {
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Tarjetas */
 
 .unidad-card {
     width: 100%;
-    box-sizing: border-box;
-
-    border: 1px solid gray;
+    margin-bottom: 0.8rem;
+    overflow: hidden;
+    border: 1px solid #ddd;
     border-radius: 8px;
-
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-
-    color: black;
+    box-sizing: border-box;
 }
 
-
-/* Botón principal de la tarjeta */
-
-.unidad-card > button {
+.unidad-summary {
+    display: block;
     width: 100%;
+    padding: 1rem;
     border: none;
-    background-color: transparent;
+    background: transparent;
+    text-align: left;
     cursor: pointer;
-
-    padding: 0;
+    font-family: inherit;
+    color: #222;
 }
 
-
-/* =========================================
-   FILAS
-   ========================================= */
+.unidad-status-row {
+    text-align: center;
+    color: #b42318;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+}
 
 .unidad-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #eee;
+}
 
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 0.6rem 0;
-
-    font-size: 1.1rem;
-
+.unidad-row:last-child {
     border-bottom: none;
 }
 
-
-/* Texto secundario */
-
 .unidad-row span {
-    color: #666;
+    color: #555;
 }
-
-
-/* Texto principal */
 
 .unidad-row strong {
     color: #222;
+    text-align: right;
 }
-
-
-/* =========================================
-   ESTATUS
-   ========================================= */
-
-.unidad-status-row {
-    display: grid;
-    justify-content: end;
-
-    width: 100%;
-
-    color: black;
-}
-
-
-/* Unidad deshabilitada */
-
-.disabled {
-    background-color: red;
-}
-
-
-/* =========================================
-   FLECHA
-   ========================================= */
 
 .unidad-row-arrow {
-    display: grid;
-    justify-content: end;
-
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
 }
 
-
-.unidad-row-arrow > img {
-    height: 1.5rem;
+.unidad-row-arrow img {
+    width: 20px;
+    height: 20px;
 }
 
-
-/* =========================================
-   ACCIONES
-   ========================================= */
+.unidad-details {
+    padding: 0.5rem 1rem 1rem;
+    border-top: 1px solid #ddd;
+}
 
 .unidades-actions {
-    display: grid;
-    justify-content: stretch;
-    justify-items: center;
+    padding: 0 1rem 1rem;
+}
 
+.action-edit {
     width: 100%;
-
-    gap: 0.8rem;
+    padding: 0.7rem;
+    background-color: #2892D7;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
 }
 
-
-.unidades-actions > button {
-    width: 90%;
-    height: 3rem;
-
-    color: #ddd;
-
-    border-radius: 0.7rem;
-
-    font-size: 1.1rem;
+.action-edit:hover {
+    background-color: #1d7fbd;
 }
 
+/* ============================= */
+/* RESPONSIVE                    */
+/* ============================= */
 
-/* =========================================
-   MÓVILES PEQUEÑOS
-   0px - 480px
-   ========================================= */
-
-@media screen and (max-width: 480px) {
+@media (max-width: 600px) {
 
     .unidades-main-container {
-        padding: 0;
+        padding: 0.8rem;
     }
-
 
     .unidades-header {
-        margin: 0.8rem;
+        margin-bottom: 1rem;
     }
 
-
-    .mobile-list {
-        width: 100%;
-        padding: 0.3rem;
+    .unidades-header h2 {
+        font-size: 1.5rem;
     }
 
-
-    .unidad-card {
-        width: 100%;
-
-        padding: 0.5rem;
-        margin: 0.5rem 0;
+    .desktop-table {
+        display: none;
     }
-
-
-    .unidad-row {
-        padding: 0.5rem 0;
-
-        font-size: 1rem;
-    }
-
-
-    .unidad-row-arrow > img {
-        height: 1.3rem;
-    }
-
-
-    .unidades-actions > button {
-        width: 95%;
-        height: 2.8rem;
-
-        font-size: 1rem;
-    }
-}
-
-
-/* =========================================
-   MÓVILES GRANDES / TABLETS
-   481px - 768px
-   ========================================= */
-
-@media screen and (min-width: 481px) and (max-width: 768px) {
-
-    .unidades-main-container {
-        padding: 0 0.5rem;
-    }
-
-
-    .unidades-header {
-        margin: 1rem 1.5rem;
-    }
-
-
-    .mobile-list {
-        width: 100%;
-        padding: 0.5rem;
-    }
-
-
-    .unidad-card {
-        width: 100%;
-
-        padding: 0.7rem;
-        margin: 0.6rem 0;
-    }
-
-
-    .unidad-row {
-        font-size: 1.1rem;
-    }
-
-
-    .unidad-row-arrow > img {
-        height: 1.5rem;
-    }
-
-
-    .unidades-actions > button {
-        width: 90%;
-        height: 3rem;
-
-        font-size: 1.1rem;
-    }
-}
-
-
-/* =========================================
-   TABLETS / LAPTOPS PEQUEÑAS
-   769px - 1024px
-   ========================================= */
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-
-    .unidades-main-container {
-        padding: 0 1rem;
-    }
-
-
-    .unidades-header {
-        margin: 1.2rem 2rem;
-    }
-
 
     .mobile-list {
         display: block;
-
-        width: 100%;
-
-        padding: 0.8rem;
-
-        margin: 0 auto;
     }
-
 
     .unidad-card {
-        width: 100%;
-
-        padding: 0.8rem;
-        margin: 0.7rem 0;
+        margin-bottom: 0.7rem;
     }
 
+    .unidad-summary {
+        padding: 0.85rem;
+    }
 
     .unidad-row {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
     }
 
-
-    .unidad-row-arrow > img {
-        height: 1.5rem;
-    }
-
-
-    .unidades-actions > button {
-        width: 70%;
-        height: 3rem;
-
-        font-size: 1.1rem;
-    }
-}
-
-
-/* =========================================
-   LAPTOP / ESCRITORIO
-   1025px - 1440px
-   ========================================= */
-
-@media screen and (min-width: 1025px) and (max-width: 1440px) {
-
-    .unidades-main-container {
-        padding: 0 2rem;
-    }
-
-
-    .unidades-header {
-        margin: 1.5rem 2rem;
-    }
-
-
-    .mobile-list {
-        display: block;
-
-        width: 90%;
-
-        padding: 0.8rem;
-
-        margin: 0 auto;
-    }
-
-
-    .unidad-card {
-        width: 100%;
-
-        padding: 1rem;
-        margin: 0.8rem 0;
-    }
-
-
-    .unidad-row {
-        font-size: 1.2rem;
-    }
-
-
-    .unidad-row-arrow > img {
-        height: 1.6rem;
-    }
-
-
-    .unidades-actions > button {
-        width: 60%;
-        height: 3rem;
-
-        font-size: 1.1rem;
-    }
-}
-
-
-/* =========================================
-   PANTALLAS GRANDES
-   1441px EN ADELANTE
-   ========================================= */
-
-@media screen and (min-width: 1441px) {
-
-    .unidades-main-container {
-        padding: 0 3rem;
-    }
-
-
-    .unidades-header {
-        margin: 1.5rem 2rem;
-    }
-
-
-    .mobile-list {
-        display: block;
-
-        width: 80%;
-
-        padding: 1rem;
-
-        margin: 0 auto;
-    }
-
-
-    .unidad-card {
-        width: 100%;
-
-        padding: 1.2rem;
-        margin: 1rem 0;
-    }
-
-
-    .unidad-row {
-        padding: 0.8rem 0;
-
-        font-size: 1.25rem;
-    }
-
-
-    .unidad-row-arrow > img {
-        height: 1.7rem;
-    }
-
-
-    .unidades-actions > button {
-        width: 50%;
-        height: 3.2rem;
-
-        font-size: 1.2rem;
-    }
 }

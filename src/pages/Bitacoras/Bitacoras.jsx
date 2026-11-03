@@ -10,7 +10,12 @@ const Bitacoras = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [expandedId, setExpandedId] = useState(null);
-
+    const [dateSpan, setDateSpan] = useState(0);
+    const timeSpan = [
+        {label: "Hoy", value: 0},
+        {label: "Última semana", value: 1},
+        {label: "Último mes", value: 2},
+    ];
 
     // =========================
     // FORMATEAR FECHA
@@ -64,6 +69,10 @@ const Bitacoras = () => {
         return niveles[nivel] ?? "-";
     };
 
+    const fechaBitacoras = () => {
+
+    };
+
 
     // =========================
     // CARGAR BITÁCORAS
@@ -79,8 +88,6 @@ const Bitacoras = () => {
                 setError("");
 
                 const data = await getBitacoras();
-
-                console.log("Bitácoras recibidas:", data);
 
                 setBitacoras(data);
 
@@ -180,6 +187,24 @@ const Bitacoras = () => {
             <div className="bitacoras-header">
 
                 <h1>Bitácoras</h1>
+
+                <div>
+                    <select
+                        name="dateSpan"
+                        id="dateSpan"
+                        value={dateSpan}
+                        onChange={(e) => setDateSpan(Number(e.target.value))}
+                    >
+                        {timeSpan.map((time) => (
+                            <option
+                                key={time.value}
+                                value={time.value}
+                            >
+                                {time.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
 
                 <span className="bitacoras-count">
                     {bitacoras.length} registros

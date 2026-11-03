@@ -1,10 +1,9 @@
+
 import React, { useEffect, useState } from "react";
 import "./Unidades.css";
-import { useNavigate } from "react-router-dom";
 import { getUnidades } from "../../services/unidadService";
 
 const Unidades = () => {
-    const navigate = useNavigate();
 
     const [unidades, setUnidades] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -16,17 +15,24 @@ const Unidades = () => {
     /* =================== */
 
     const handleServiceStatus = (horasMotor, ultimoServicio) => {
-        let color;
-        var result = horasMotor - ultimoServicio;
 
-        if (result == null) {
-            color = "#eeeeee";
-        } else if (result < 900) {
-            color = "#20f02059";
-        } else if (result > 980 && result < 1000) {
-            color = "#f0f02059";
+        if (horasMotor == null || ultimoServicio == null) {
+            return {
+                backgroundColor: "#eeeeee"
+            };
+        }
+
+        const horasTrabajadas = horasMotor - ultimoServicio;
+        const intervaloServicio = 1000;
+
+        let color;
+
+        if (horasTrabajadas >= intervaloServicio) {
+            color = "#fa000046"; // Rojo
+        } else if (horasTrabajadas >= intervaloServicio - 20) {
+            color = "#f0f02059"; // Amarillo
         } else {
-            color = "#fa000046";
+            color = "#20f02059"; // Verde
         }
 
         return {
@@ -34,7 +40,12 @@ const Unidades = () => {
         };
     };
 
+    /* =================== */
+    /* ESTADO DE TARJETA   */
+    /* =================== */
+
     const handleCardStatus = (horasMotor, ultimoServicio, active) => {
+
         if (!active) {
             return {
                 backgroundColor: "#80808050",
@@ -43,6 +54,18 @@ const Unidades = () => {
         }
 
         return handleServiceStatus(horasMotor, ultimoServicio);
+    };
+
+    /* =================== */
+    /* ESTADO DE FILA      */
+    /* =================== */
+
+    const handleRowStatus = (unidad) => {
+        return handleCardStatus(
+            unidad.horasMotor,
+            unidad.ultimoServicio,
+            unidad.active
+        );
     };
 
     /* =================== */
@@ -56,19 +79,35 @@ const Unidades = () => {
     };
 
     /* =================== */
+    /* FORMATEAR FECHA     */
+    /* =================== */
+
+    const formatearFecha = (fecha) => {
+        if (!fecha) return "-";
+
+        const [date] = fecha.split("T");
+        const [year, month, day] = date.split("-");
+
+        return `${day}-${month}-${year}`;
+    };
+
+    /* =================== */
     /* CARGAR UNIDADES     */
     /* =================== */
 
     useEffect(() => {
+
         const cargarUnidades = async () => {
             try {
                 setLoading(true);
                 setError("");
 
                 const data = await getUnidades();
+
                 setUnidades(data);
 
             } catch (error) {
+
                 console.error(
                     "No se pudieron obtener las unidades",
                     error
@@ -82,13 +121,32 @@ const Unidades = () => {
         };
 
         cargarUnidades();
+
     }, []);
 
     /* =================== */
-    /* RENDER              */
+    /* CONTENIDO DE ESTADO */
     /* =================== */
 
+    const renderStatus = () => {
+
+        if (loading) {
+            return <div className="status-message">Cargando unidades...</div>;
+        }
+
+        if (error) {
+            return <div className="status-message error">{error}</div>;
+        }
+
+        if (unidades.length === 0) {
+            return <div className="status-message">No hay unidades</div>;
+        }
+
+        return null;
+    };
+
     return (
+
         <div className="unidades-main-container">
 
             <div className="unidades-header">
@@ -101,125 +159,187 @@ const Unidades = () => {
 
             <div className="mobile-list">
 
-                {loading ? (
+                {renderStatus()}
 
-                    <div className="status-message">
-                        Cargando unidades...
-                    </div>
+                {!loading && !error && unidades.map((unidad) => {
 
-                ) : error ? (
+                    const isExpanded =
+                        expandedId === unidad.numeroUnidad;
 
-                    <div className="status-message error">
-                        {error}
-                    </div>
+                    return (
 
-                ) : unidades.length === 0 ? (
+                        <div
+                            className={`unidad-card ${isExpanded ? "expanded" : ""}`}
+                            key={unidad.numeroUnidad}
+                            style={handleCardStatus(
+                                unidad.horasMotor,
+                                unidad.ultimoServicio,
+                                unidad.active
+                            )}
+                        >
 
-                    <div className="status-message">
-                        No hay unidades
-                    </div>
-
-                ) : (
-
-                    unidades.map((unidad) => {
-
-                        const isExpanded =
-                            expandedId === unidad.numeroUnidad;
-
-                        return (
-                            <div
-                                className={`unidad-card ${
-                                    isExpanded ? "expanded" : ""
-                                }`}
-                                key={unidad.numeroUnidad}
-                                 style={handleCardStatus(
-                                    unidad.horasMotor,
-                                    unidad.ultimoServicio,
-                                    unidad.active,
-                                    unidad.fechaUltimoServicio
-                                )}
+                            <button
+                                type="button"
+                                className="unidad-summary"
+                                onClick={() =>
+                                    toggleDetails(unidad.numeroUnidad)
+                                }
                             >
 
-                                <button
-                                    type="button"
-                                    className="unidad-summary"
-                                    onClick={() =>
-                                        toggleDetails(
-                                            unidad.numeroUnidad
-                                        )
-                                    }
-                                >
+                                <div className="unidad-status-row">
+                                    <strong>
+                                        {!unidad.active
+                                            ? "UNIDAD FUERA DE SERVICIO"
+                                            : ""}
+                                    </strong>
+                                </div>
 
-                                    <div className="unidad-status-row">
+                                <div className="unidad-row">
+                                    <span>Unidad</span>
+                                    <strong>{unidad.numeroUnidad}</strong>
+                                </div>
+
+                                <div className="unidad-row">
+                                    <span>Horas motor</span>
+                                    <strong>{unidad.horasMotor ?? "-"}</strong>
+                                </div>
+
+                                <div className="unidad-row-arrow">
+                                    <img
+                                        src={
+                                            isExpanded
+                                                ? "/up-arrow.svg"
+                                                : "/down-arrow.svg"
+                                        }
+                                        alt="Mostrar detalles"
+                                    />
+                                </div>
+
+                            </button>
+
+                            {isExpanded && (
+
+                                <div className="unidad-details">
+
+                                    <div className="unidad-row">
+                                        <span>Modelo</span>
+                                        <strong>{unidad.modelo}</strong>
+                                    </div>
+
+                                    <div className="unidad-row">
+                                        <span>Fecha de último servicio</span>
                                         <strong>
-                                            {unidad.active
-                                                ? ""
-                                                : "UNIDAD FUERA DE SERVICIO"}
+                                            {formatearFecha(unidad.fechaUltimoServicio)}
                                         </strong>
                                     </div>
 
                                     <div className="unidad-row">
-                                        <span>Unidad</span>
-                                        
+                                        <span>Horas de último servicio</span>
                                         <strong>
+                                            {unidad.ultimoServicio ?? "-"}
+                                        </strong>
+                                    </div>
+
+                                </div>
+
+                            )}
+
+                            {isExpanded && (
+                                <div className="unidades-actions">
+                                    <button
+                                        type="button"
+                                        className="action-edit"
+                                    >
+                                        Editar
+                                    </button>
+                                </div>
+                            )}
+
+                        </div>
+                    );
+
+                })}
+
+            </div>
+
+            {/* ==================== */}
+            {/* VERSION DESKTOP      */}
+            {/* ==================== */}
+
+            <div className="desktop-table">
+
+                {renderStatus()}
+
+                {!loading && !error && unidades.length > 0 && (
+
+                    <div className="table-container">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Unidad</th>
+                                    <th>Modelo</th>
+                                    <th>Horas motor</th>
+                                    <th>Último servicio</th>
+                                    <th>Fecha último servicio</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                {unidades.map((unidad) => (
+
+                                    <tr
+                                        key={unidad.numeroUnidad}
+                                        style={handleRowStatus(unidad)}
+                                    >
+
+                                        <td>
                                             {unidad.numeroUnidad}
-                                        </strong>
-                                    </div>
+                                        </td>
 
-                                    <div className="unidad-row">
-                                        <span>Horas motor</span>
+                                        <td>
+                                            {unidad.modelo}
+                                        </td>
 
-                                        <strong>
+                                        <td>
                                             {unidad.horasMotor ?? "-"}
-                                        </strong>
-                                    </div>
+                                        </td>
 
-                                    <div className="unidad-row-arrow">
-                                        
-                                        <img
-                                            src={isExpanded ?"/up-arrow.svg" :"/down-arrow.svg" }
-                                            alt="Mostrar detalles"
-                                        />
-                                    </div>
+                                        <td>
+                                            {unidad.ultimoServicio ?? "-"}
+                                        </td>
 
-                                </button>
+                                        <td>
+                                            {formatearFecha(unidad.fechaUltimoServicio)}
+                                        </td>
 
-                                {isExpanded && (
-                                    <>
-                                    <div className="unidad-details">
-                                        <div className="unidad-row">
-                                            <span>Modelo</span>
-                                            <strong>{unidad.modelo}</strong>
-                                        </div>
+                                        <td>
+                                            <span className={`unidad-estado ${unidad.active ? "activa" : "inactiva"}`}>
+                                                {unidad.active
+                                                    ? "Activa"
+                                                    : "Fuera de servicio"}
+                                            </span>
+                                        </td>
 
-                                        <div className="unidad-row">
-                                            <span>Fecha de último servicio</span>
-                                            <strong>{unidad.fechaUltimoServicio}</strong>
-                                        </div>
+                                    </tr>
 
-                                        <div className="unidad-row">
-                                            <span>Horas de último servicio</span>
-                                            <strong>{unidad.ultimoServicio}</strong>
-                                        </div>
-                                    </div>
+                                ))}
 
-                                    <div className="unidades-actions">
-                                        <button className="action-edit">
-                                            Editar
-                                        </button>
-                                    </div>
-                                    </>
+                            </tbody>
 
-                                )}
+                        </table>
 
-                            </div>
-                        );
-                    })
+                    </div>
+
                 )}
 
             </div>
 
         </div>
+
     );
 };
 
